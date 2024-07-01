@@ -34,6 +34,10 @@ function App() {
     setSearchTerm(event.target.value);
   };
 
+  const buttonChange = event=>{
+    setSearchTerm(event.target.value);
+  }
+
   const handleChange2 = event=>{
     setSearchTerm2(event.target.value);
   };
@@ -70,6 +74,10 @@ function App() {
         type = "number"
         placeholder = "Enter your code!"
       />
+      <button
+        onClick = {buttonChange}
+      >Button ONE
+      </button>
     </div>
   );
 }
