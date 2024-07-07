@@ -1,6 +1,10 @@
 import logo from './logo.svg';
 import './App.css';
 import React, {useState} from 'react';
+import './components/TodoTemplate';
+import TodoTemplate from './components/TodoTemplate';
+import profile_picture_pjh from './img/박준하사진.jpg'
+import business_card from './img/명함.pdf'
 
 const data = [
   'Apple',
@@ -28,6 +32,8 @@ function App() {
 
   const [searchTerm2, setSearchTerm2] = useState('');
 
+  const [searchTerm3, setSearchTerm3] = useState('');
+
   const person1 = new Person("Park",183,73);
 
   const handleChange = event=>{
@@ -35,24 +41,37 @@ function App() {
   };
 
   const buttonChange = event=>{
-    setSearchTerm(event.target.value);
+    setSearchTerm3(event.target.value);
   }
 
   const handleChange2 = event=>{
     setSearchTerm2(event.target.value);
   };
 
+  const holdValue = event=>{
+    setSearchTerm3(event.target.value);
+  }
+
+
   const filteredDate = data.filter(item =>
     item.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const filteredDataButton = data.filter(item=>
+    item.toLowerCase().includes(searchTerm3.toLowerCase())
+  )
+
   return(
-    <div>
+    <div className = "App">
+      Searching App Template
+      <TodoTemplate/>
       <header>
         <h1>BLISS TECH</h1>
         <h3>searching app</h3>
         <p>Posted by {person1.name}</p>
+        <img src ={profile_picture_pjh} width = '400px'/>
       </header>
+      
       <input
         type = "text"
         placeholder = "Search..."
@@ -71,13 +90,20 @@ function App() {
         ))}
       </ul>
       <input
-        type = "number"
+        type = "text"
         placeholder = "Enter your code!"
+        
+        
       />
       <button
         onClick = {buttonChange}
       >Button ONE
       </button>
+      <ul>
+        {filteredDataButton.map((item,index)=>(
+          <li key ={index}>{item}</li>
+        ))}
+      </ul>
     </div>
   );
 }
